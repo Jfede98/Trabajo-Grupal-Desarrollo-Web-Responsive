@@ -1,0 +1,62 @@
+/*estilos del login*/
+body {
+    background-color: #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 412px;
+    height: 80%;
+    max-height: 915px;
+    background-color: #F9F9F9;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  div {
+    display: block;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    margin: 0px 0px 100px;
+  }
+  
+  img {
+    display: block;
+    align-items: center;
+    width: 50%;
+  }
+  
+  .enviar {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+  
+  }
+  
+  button {
+    box-shadow: 2px 2px 5px -1px;
+    background-color: #0896A9;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+  
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  
+  }
+  
