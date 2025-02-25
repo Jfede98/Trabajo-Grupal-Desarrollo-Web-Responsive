@@ -28,15 +28,16 @@ Trabajo en Grupo para la materia de Desarrollo Web Responsive Maestria UNIR. En 
    - Los datos del carrito se guardan en `localStorage`.
 
 5. **Formulario de Facturación**:
-   - Al finalizar la compra, los usuarios deben completar un formulario de facturación.
+   - Al finalizar la compra, los usuarios deben completar un formulario de facturación. Estos datos son obligatorios tienen que ser llenados para finalizar la compra.
    - Los datos del formulario se guardan en `localStorage` para futuras compras.
 
 6. **Finalizar compra**:
    - Al dar clic al botón de finalizar compra el usuario puede ver un modal que le indica que su compra ha sido exitosa.
    - Se redirige al usuario a la pagina de catálogo.
+   - El botón se encuentra deshabilitado si es que no hay ningún item en el carrito o si los datos del formularios de facturación no han sido llenados.
 
 7. **Logout**:
-   - Al cerrar sesión, se limpian todos los datos de `localStorage` y `sessionStorage`.
+   - Al cerrar sesión, se limpian todos los datos de `localStorage` y `sessionStorage`. El usuario es redirigido al Login para poder volver hacer el flujo.
   
 ---
 ## Recursos usados
