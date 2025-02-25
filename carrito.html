@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="icon" type="image/png" href="recursos/ICONO-ETERNA.svg" alt="iconoEterna">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<nav>
+    <div class="barra-nav">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom">
+            <div class="col-md-3 mb-0 mb-md-0 ms-3">
+                <a href="home.html" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <img src="recursos/LOGO ETERNA.svg" alt="logo Eterna" width="100" height="" role="img">
+                </a>
+            </div>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="home.html" class="nav-link px-2">Home</a></li>
+                <li><a href="catalogo.html" class="nav-link px-2">Catálogo</a></li>
+                <li><a href="contact.html" class="nav-link px-2">Contacto</a></li>
+            </ul>
+            <div class="col-md-3 text-end me-3">
+                <a href="carrito.html" class="btn btn-primary me-2">
+                    <i class="bi bi-cart"></i> <!-- Carrito -->
+                </a>
+                <a type="button" href="#" class="btn btn-outline-primary" id="logout">Logout</a>
+            </div>
+        </header>
+    </div>
+</nav>
+
+<body>
+    <section class="h-100 h-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <!-- Sección de Productos en el Carrito -->
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0">Carrito de Compras</h1>
+                                        </div>
+                                        <hr class="my-4">
+
+                                        <!-- Mensaje cuando el carrito está vacío -->
+                                        <div id="emptyCartMessage" class="text-center">
+                                            <p>No hay nada en tu carrito.</p>
+                                        </div>
+
+                                        <!-- Lista de Productos (se llenará dinámicamente) -->
+                                        <div id="cartItems" class="d-none">
+                                            <!-- Los productos del carrito se mostrarán aquí -->
+                                        </div>
+
+                                        <!-- Botón para seguir comprando -->
+                                        <div class="pt-5">
+                                            <h6 class="mb-0">
+                                                <a href="catalogo.html" class="text-body">
+                                                    <i class="fas fa-long-arrow-alt-left me-2"></i>Volver al catálogo
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sección de Resumen y Formulario de Facturación -->
+                                <div class="col-lg-4 bg-body-tertiary">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen</h3>
+                                        <hr class="my-4">
+
+                                        <!-- Total de Productos -->
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="text-uppercase">Productos</h5>
+                                            <h5 id="totalItems">0</h5>
+                                        </div>
+
+                                        <!-- Total a Pagar -->
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Total</h5>
+                                            <h5 id="totalPrice">$ 0.00</h5>
+                                        </div>
+
+                                        <!-- Formulario de Facturación -->
+                                        <h5 class="text-uppercase mb-3">Datos de Facturación</h5>
+                                        <form id="billingForm">
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Nombre</label>
+                                                <input type="text" class="form-control" id="name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Correo Electrónico</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="country" class="form-label">País</label>
+                                                <input type="text" class="form-control" id="country" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="city" class="form-label">Ciudad</label>
+                                                <input type="text" class="form-control" id="city" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="address" class="form-label">Dirección</label>
+                                                <input type="text" class="form-control" id="address" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="zip" class="form-label">Código Postal</label>
+                                                <input type="text" class="form-control" id="zip" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="state" class="form-label">Estado</label>
+                                                <input type="text" class="form-control" id="state" required>
+                                            </div>
+                                        </form>
+
+                                        <hr class="my-4">
+
+                                        <!-- Botón de Finalizar Compra -->
+                                        <button type="button" class="btn btn-primary btn-block btn-lg"
+                                            id="checkoutButton" disabled>
+                                            Finalizar Compra
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal de Confirmación -->
+    <div class="modal fade" id="confirmationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Compra realizada con éxito</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <p>¡Gracias por tu compra!</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='catalogo.html'">Comprar
+                        más</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="recursos/script.js">
+    </script>
+</body>
+
+</html>
