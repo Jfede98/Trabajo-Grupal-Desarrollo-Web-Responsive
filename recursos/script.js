@@ -253,3 +253,98 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   
+  /* Guardando en el local storage datos del form de facturación */
+document.addEventListener("DOMContentLoaded", function () {
+  const checkoutButton = document.getElementById("checkoutButton");
+  const billingForm = document.getElementById("billingForm");
+
+  // Verificar si los elementos del formulario existen (página de carrito)
+  if (checkoutButton && billingForm) {
+    // Cargar los datos del formulario desde localStorage (si existen)
+    const savedBillingData = JSON.parse(localStorage.getItem("billingData")) || {};
+    document.getElementById("name").value = savedBillingData.name || "";
+    document.getElementById("email").value = savedBillingData.email || "";
+    document.getElementById("country").value = savedBillingData.country || "";
+    document.getElementById("city").value = savedBillingData.city || "";
+    document.getElementById("address").value = savedBillingData.address || "";
+    document.getElementById("zip").value = savedBillingData.zip || "";
+    document.getElementById("state").value = savedBillingData.state || "";
+
+    checkoutButton.addEventListener("click", function () {
+      if (billingForm.checkValidity()) {
+        // Guardar los datos de facturación en localStorage
+        const billingData = {
+          name: document.getElementById("name").value,
+          email: document.getElementById("email").value,
+          country: document.getElementById("country").value,
+          city: document.getElementById("city").value,
+          address: document.getElementById("address").value,
+          zip: document.getElementById("zip").value,
+          state: document.getElementById("state").value
+        };
+        localStorage.setItem("billingData", JSON.stringify(billingData));
+
+        // Limpiar el carrito
+        localStorage.removeItem("cartItems");
+
+        // Mostrar el modal de confirmación usando el atributo data-bs-toggle
+        const modal = new bootstrap.Modal(document.getElementById("confirmationModal"));
+        modal.show();
+      } else {
+        billingForm.reportValidity(); // Mostrar mensajes de validación si el formulario no es válido
+      }
+    });
+  }
+});
+
+
+/*Traer 3 datos en la pagina home para la seccion destacados de la misma api que usamos en la pagina catalogo*/
+document.addEventListener("DOMContentLoaded", function () {
+  const featuredProducts = document.getElementById("featuredProducts");
+
+  // Verificar si la sección de productos destacados existe
+  if (featuredProducts) {
+      const apiUrl = "https://dummyjson.com/products";
+
+      // Mostrar mensaje de carga
+      featuredProducts.innerHTML = "<p>Cargando productos destacados...</p>";
+
+      // Obtener datos de la API
+      fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+              if (data && data.products && data.products.length > 0) {
+                  const products = data.products.filter(product => ["beauty", "fragrances"].includes(product.category));
+                  displayFeaturedProducts(products.slice(0, 3)); // Mostrar los 3 primeros productos destacados
+              } else {
+                  featuredProducts.innerHTML = "<p>No se encontraron productos destacados.</p>";
+              }
+          })
+          .catch(error => {
+              console.error("Error al obtener los datos de la API:", error);
+              featuredProducts.innerHTML = "<p>Error al cargar los productos destacados. Inténtalo de nuevo más tarde.</p>";
+          });
+  }
+});
+
+// Función para mostrar los productos destacados
+function displayFeaturedProducts(products) {
+  const featuredProducts = document.getElementById("featuredProducts");
+  featuredProducts.innerHTML = ""; // Limpiar el contenedor
+
+  products.forEach(product => {
+      const productCard = `
+          <div class="col-md-4 text-center">
+              <div class="card">
+                  <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" onerror="this.src='recursos/imagen-placeholder.jpg';">
+                  <div class="card-body">
+                      <h5 class="card-title">${product.title}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <a href="catalogo.html" class="btn btn-primary">Ver más</a>
+                  </div>
+              </div>
+          </div>
+      `;
+      featuredProducts.innerHTML += productCard;
+  });
+}
